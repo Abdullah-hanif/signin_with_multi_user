@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style_sign_in.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div>Site<span>Random</span></div>
+    </div>
+    <br>
+    <div class="login">
+        <input type="text" placeholder="username" name="" id="email"><br>
+        <input type="password" placeholder="password" name="" id="pass"><br>
+        <button type="button" onclick="login()"
+            style="border: 1px solid red; width: 19.6em; height: 2em; background-color: darkgrey;">LOG IN</button>
+        <button type="button" onclick="main_page()"
+            style="border: 1px solid red; width: 19.6em; height: 2em; background-color: darkgrey;">BACK TO SIGNUP
+        </button>
+    </div>
+
+
+    <script>
+        async function login() {
+            var name = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+            if (localStorage.getItem('users')) {
+                users = JSON.parse(localStorage.getItem('users'));
+                users.forEach((item, index) => {
+                    // console.log(`USER NO ${index + 1} is : ${item.pass}`)
+                    if (name == item.email && pass == item.pass) {
+                        window.location.href = "home.html"
+                    }
+                });
+                setTimeout(function () { alert('email or password incorrect'); }, 3000);
+            }
+            else {
+                console.log("users not exists in local storage");
+            }
+        }
+
+        function main_page() {
+            window.location.href = "sign_up.html"
+        }
+
+    </script>
+
+</body>
+
+</html>
